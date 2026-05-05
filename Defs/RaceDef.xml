@@ -1,0 +1,155 @@
+<Defs>
+	<AlienRace.ThingDef_AlienRace ParentName="Human">
+		<defName>Alien_Nocti</defName>
+		<label>ノクティ</label>
+		<description>人間のことが食的にも性的にも大好きな蝙蝠の種族ノクティです。彼女たちにとって人間は良き友であり、愛おしき恋人であり、美味しい食べ物です</description>
+
+		<alienRace>
+			<generalSettings>
+				<!--ここから-->
+				<maleGenderProbability>0.0</maleGenderProbability>
+				<alienPartGenerator>
+				<headTypes>
+					<li>NoctiFace</li>
+				</headTypes>
+
+					<customHeadDrawSize>(0.5,0.5)</customHeadDrawSize>
+					
+				</alienPartGenerator>
+				<!--ここまでに入れる-->
+			</generalSettings>
+		<graphicPaths>
+				<body>Thing/Body/NoctiBody</body>
+			</graphicPaths>
+		</alienRace>
+
+	</AlienRace.ThingDef_AlienRace>
+	<!--ポーン-->
+	<PawnKindDef ParentName="BasePlayerPawnKind">
+		<defName>ExampleNoctiColonist</defName>
+		<label>ノクティ</label>
+		<race>Alien_Nocti</race>
+		<defaultFactionType>PlayerColony</defaultFactionType>
+		<initialResistanceRange>13~21</initialResistanceRange>
+	</PawnKindDef>
+
+	<!--顔-->
+	<HeadTypeDef ParentName="AverageBase">
+		<defName>NoctiFace</defName>
+		<label>ノクティの頭</label>
+		<graphicPath>Thing/Face/NoctiFace</graphicPath>
+		<gender>Female</gender>
+		<randomChosen>false</randomChosen>
+	</HeadTypeDef>
+
+	<!--髪型-->
+	<HairDef>
+		<defName>NoctiHair</defName>
+		<label>ノクティの髪の毛</label>
+		<texPath>Thing/Hair/NoctiHair</texPath>
+	</HairDef>
+
+	<!--銃-->
+	<ThingDef ParentName="BaseHumanMakeableGun" Name="Gun_AssaultRifle">
+		<defName>BloodDrainRifle</defName>
+		<label>流血ライフル</label>
+		<description>ノクティ達が獲物を確実に生け捕りするために開発した銃器。</description>
+		<graphicData>
+			<texPath>Things/Item/Equipment/WeaponRanged/AssaultRifle</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<soundInteract>Interact_Rifle</soundInteract>
+		<recipeMaker>
+			<researchPrerequisite>PrecisionRifling</researchPrerequisite>
+			<skillRequirements>
+				<Crafting>6</Crafting>
+			</skillRequirements>
+			<displayPriority>420</displayPriority>
+		</recipeMaker>
+		<thingSetMakerTags>
+			<li>RewardStandardQualitySuper</li>
+		</thingSetMakerTags>
+		<statBases>
+			<WorkToMake>40000</WorkToMake>
+			<Mass>3.5</Mass>
+			<AccuracyTouch>0.60</AccuracyTouch>
+			<AccuracyShort>0.70</AccuracyShort>
+			<AccuracyMedium>0.65</AccuracyMedium>
+			<AccuracyLong>0.55</AccuracyLong>
+			<RangedWeapon_Cooldown>1.70</RangedWeapon_Cooldown>
+		</statBases>
+		<costList>
+			<Steel>60</Steel>
+			<ComponentIndustrial>7</ComponentIndustrial>
+		</costList>
+		<verbs>
+			<li>
+				<verbClass>Verb_Shoot</verbClass>
+				<hasStandardCommand>true</hasStandardCommand>
+				<defaultProjectile>BloodDrainBullet</defaultProjectile>
+				<warmupTime>0.5</warmupTime>
+				<range>38.5</range>
+				<burstShotCount>5</burstShotCount>
+				<ticksBetweenBurstShots>10</ticksBetweenBurstShots>
+				<soundCast>Shot_AssaultRifle</soundCast>
+				<soundCastTail>GunTail_Medium</soundCastTail>
+				<muzzleFlashScale>9</muzzleFlashScale>
+			</li>
+		</verbs>
+		<weaponTags>
+			<li>IndustrialGunAdvanced</li>
+			<li>AssaultRifle</li>
+		</weaponTags>
+		<tools>
+			<li>
+				<label>stock</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+			<li>
+				<label>barrel</label>
+				<capacities>
+					<li>Blunt</li>
+					<li>Poke</li>
+				</capacities>
+				<power>9</power>
+				<cooldownTime>2</cooldownTime>
+			</li>
+		</tools>
+	</ThingDef>
+	
+	<!--弾-->
+	<ThingDef ParentName="BaseBullet">
+		<defName>BloodDrainBullet</defName>
+		<label>流血弾</label>
+		<thingClass>NoctiRace.BloodDrainBullet</thingClass>
+		<graphicData>
+			<texPath>Things/Projectile/Bullet_Small</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+		</graphicData>
+		<projectile>
+			<damageDef>BloodDrainDamage</damageDef>
+			<damageAmountBase>1</damageAmountBase>
+			<speed>70</speed>
+		</projectile>
+	</ThingDef>
+
+	<!--ダメージ-->
+	<DamageDef Name="Bullet">
+		<defName>BloodDrainDamage</defName>
+		<label>不自然な風穴</label>
+		<workerClass>DamageWorker_AddInjury</workerClass>
+		<externalViolence>true</externalViolence>
+		<deathMessage>{0} has been shot to death.</deathMessage>
+		<hediff>Gunshot</hediff>
+		<harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+		<impactSoundType>Bullet</impactSoundType>
+		<armorCategory>Sharp</armorCategory>
+		<overkillPctToDestroyPart>0~0.7</overkillPctToDestroyPart>
+		<isRanged>true</isRanged>
+		<makesAnimalsFlee>true</makesAnimalsFlee>
+	</DamageDef>
+</Defs>
