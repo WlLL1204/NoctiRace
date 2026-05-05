@@ -11,14 +11,28 @@ using UnityEngine;
 
 namespace NoctiRace
 {
-    internal class BloodDrainBullet:Bullet
+    public class BloodDrainBullet : Bullet
     {
+
         protected override void Impact(Thing hitThing, bool blockedByShield = false)
         {
+            
             base.Impact(hitThing, blockedByShield);
-            Pawn victim= hitThing as Pawn;
 
+            Pawn victim = hitThing as Pawn;
+            if (victim == null) return;
+            if (victim.IsBrokenDown()) return;
+            if(!victim.health.hediffSet.HasHediff(HediffDefOf.BloodLoss))
+            {
+                Hediff setDiff = HediffMaker.MakeHediff(HediffDefOf.BloodLoss,victim);
+                setDiff.Severity = 0.25f;
+                victim.health.AddHediff(setDiff);
+            }
+            else
+            {
+                Hediff bloodHediff = victim.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss);
+                bloodHediff.Severity += 0.05f;
+            }
         }
-
     }
 }

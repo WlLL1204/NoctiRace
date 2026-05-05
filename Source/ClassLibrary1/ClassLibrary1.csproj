@@ -361,8 +361,9 @@
     <Compile Include="Entitys\Basic\Weapon\BloodDrainBullet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Entitys\Basic\Nocti\" />
+    <Content Include="Entitys\Basic\Nocti\HediffMakeWeapon.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
