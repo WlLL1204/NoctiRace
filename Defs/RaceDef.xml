@@ -10,7 +10,8 @@
 				<maleGenderProbability>0.0</maleGenderProbability>
 				<alienPartGenerator>
 				<headTypes>
-					<li>NoctiFace</li>
+					<li>NoctiFaceTest</li>
+					<li>NoctiFaceTestProt</li>
 				</headTypes>
 
 					<customHeadDrawSize>(0.5,0.5)</customHeadDrawSize>
@@ -35,9 +36,16 @@
 
 	<!--顔-->
 	<HeadTypeDef ParentName="AverageBase">
-		<defName>NoctiFace</defName>
-		<label>ノクティの頭</label>
-		<graphicPath>Thing/Face/NoctiFace</graphicPath>
+		<defName>NoctiFaceTest</defName>
+		<label>ノクティの頭テスト版</label>
+		<graphicPath>Thing/Face/Face1/NoctiFace</graphicPath>
+		<gender>Female</gender>
+		<randomChosen>false</randomChosen>
+	</HeadTypeDef>
+	<HeadTypeDef ParentName="AverageBase">
+		<defName>NoctiFaceProt</defName>
+		<label>ノクティの頭プロトタイプ</label>
+		<graphicPath>Thing/Face/Face2/NoctiFace</graphicPath>
 		<gender>Female</gender>
 		<randomChosen>false</randomChosen>
 	</HeadTypeDef>

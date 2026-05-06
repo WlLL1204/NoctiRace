@@ -358,6 +358,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Entitys\Basic\Building\BloodHarvester\BloodHarvester.cs" />
     <Compile Include="Entitys\Basic\Weapon\BloodDrainBullet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

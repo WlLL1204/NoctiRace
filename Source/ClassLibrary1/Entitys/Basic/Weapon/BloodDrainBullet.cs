@@ -21,7 +21,7 @@ namespace NoctiRace
 
             Pawn victim = hitThing as Pawn;
             if (victim == null) return;
-            if (victim.IsBrokenDown()) return;
+            if (victim.Downed) return;
             if(!victim.health.hediffSet.HasHediff(HediffDefOf.BloodLoss))
             {
                 Hediff setDiff = HediffMaker.MakeHediff(HediffDefOf.BloodLoss,victim);
