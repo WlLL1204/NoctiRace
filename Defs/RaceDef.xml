@@ -160,4 +160,27 @@
 		<isRanged>true</isRanged>
 		<makesAnimalsFlee>true</makesAnimalsFlee>
 	</DamageDef>
+
+	<!--ゼノタイプ-->
+	<XenotypeDef>
+		<defName>NoctiXenoType</defName>
+		<label>ノクティ</label>
+		<description>吸血蝙蝠の遺伝子を色濃く受け継いだゼノタイプ</description>
+		<descriptionShort>With gray skin adapted to artificial light, dirtmoles thrive in cramped and dark spaces where combat and travel happen over short distances. They are naturals at digging and navigating complex tunnel structures. In the open, they suffer from a sensitivity to light, slow speed and poor eyesight at distance.</descriptionShort>
+		<iconPath>UI/Icons/Xenotypes/Sanguophage</iconPath>
+		<inheritable>true</inheritable>
+		<nameMaker>NamerPersonDirtmole_Male</nameMaker>
+		<nameMakerFemale>NamerPersonDirtmole_Female</nameMakerFemale>
+		<chanceToUseNameMaker>1</chanceToUseNameMaker>
+		<genes>
+			<li>KillThirst</li>
+			<li>Hemogenic</li>
+			<li>HemogenDrain</li>
+			<li>Bloodfeeder</li>
+			<li>LongjumpLegs</li>
+			<li>DarkVision</li>
+			<li>Nearsighted</li>
+		</genes>
+	</XenotypeDef>
+
 </Defs>
