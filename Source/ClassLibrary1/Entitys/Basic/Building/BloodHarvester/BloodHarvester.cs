@@ -7,37 +7,55 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.Noise;
+
 namespace NoctiRace
 {
 
     public class NR_BloodHarvester : Building
     {
-        float tick = 0;
-        public override void TickLong()
+
+        protected override void Tick()
         {
-            base.TickLong();
-            if(tick==0) Log.Message($"採血開始");
-            Room a=null;
-            
+
             Room room = this.GetRoom();
             List<Pawn> target;
-            target = a.ContainedAndAdjacentThings.OfType<Pawn>().ToList();
+            target = room.ContainedAndAdjacentThings.OfType<Pawn>().ToList();
 
             if (room != null)
             {
                 target = room.ContainedAndAdjacentThings.OfType<Pawn>().ToList();
                 target = target.Where(p => p.IsPrisonerOfColony).ToList();
                 int count = target.Count();
+
                 foreach (Pawn pawn in target)
                 {
-                    pawn.health.AddHediff(HediffDefOf.BloodLoss);
-                    Log.Message($"{pawn.Name} の血を吸い上げました");
+                    if (!pawn.health.hediffSet.HasHediff(HediffDefOf.BloodLoss))
+                    {
+                        Hediff setDiff = HediffMaker.MakeHediff(HediffDefOf.BloodLoss, pawn);
+                        setDiff.Severity = 0.25f;
+                        pawn.health.AddHediff(setDiff);
+                    }
+                    else
+                    {
+                        if (pawn.Downed) break;
+                        Hediff bloodHediff = pawn.health.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss);
+                        bloodHediff.Severity += 0.05f;
+                    }
                 }
-            }else
-            {
-                Log.Message($"部屋がないよ");
             }
-                tick++;
+            else
+            {
+            }
+
+        }
+
+        public override void TickLong()
+        {
+
+            base.TickLong();
+
+              
+
         }
     }
 }
