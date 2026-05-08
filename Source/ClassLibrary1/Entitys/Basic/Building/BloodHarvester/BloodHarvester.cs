@@ -10,6 +10,7 @@ using Verse.Noise;
 
 namespace NoctiRace
 {
+    
 
     public class NR_BloodHarvester : Building
     {

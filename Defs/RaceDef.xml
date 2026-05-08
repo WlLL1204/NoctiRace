@@ -182,5 +182,97 @@
 			<li>Nearsighted</li>
 		</genes>
 	</XenotypeDef>
+	
+	<!--遺伝子-->
+	<GeneDef>
+		<defName>NoctiGene</defName>
+		<label>吸血蝙蝠の遺伝子</label>
+		<labelShortAdj>kill-thirsty</labelShortAdj>
+		<description>Carriers of this gene lust for the feeling of ending another's life. They will become irritated if they go for too long without killing someone in close combat.</description>
+		<displayCategory>Violence</displayCategory>
+		<displayOrderInCategory>60</displayOrderInCategory>
+		<iconPath>UI/Icons/Genes/Gene_Killthirst</iconPath>
+		<enablesNeeds>
+			<li>NR_Blood</li>
+		</enablesNeeds>
+		<biostatMet>4</biostatMet>
+		<minAgeActive>13</minAgeActive>
+		<exclusionTags>
+			<li>NR_Blood</li>
+		</exclusionTags>
+		<symbolPack>
+			<prefixSymbols>
+				<li>
+					<symbol>murder</symbol>
+				</li>
+				<li>
+					<symbol>death</symbol>
+				</li>
+				<li>
+					<symbol>kill</symbol>
+				</li>
+				<li>
+					<symbol>slay</symbol>
+				</li>
+				<li>
+					<symbol>rage</symbol>
+				</li>
+				<li>
+					<symbol>hate</symbol>
+				</li>
+				<li>
+					<symbol>snuff</symbol>
+				</li>
+			</prefixSymbols>
+			<suffixSymbols>
+				<li>
+					<symbol>vore</symbol>
+				</li>
+				<li>
+					<symbol>killer</symbol>
+				</li>
+				<li>
+					<symbol>slayer</symbol>
+				</li>
+			</suffixSymbols>
+		</symbolPack>
+	</GeneDef>
+
+	<!--特性-->
+	<TraitDef>
+		<defName>NR_TraitDef_BloodNeed</defName>
+		<commonality>0.2</commonality>
+		<!-- Note: There are several backstories that force this trait-->
+		<degreeDatas>
+			<li>
+				<label>Vanp</label>
+				<description>吸血欲求</description>
+				<enablesNeeds>
+					<li>NR_Blood</li>
+				</enablesNeeds>
+				<possessions>
+					<RawFungus>30~60</RawFungus>
+				</possessions>
+			</li>
+		</degreeDatas>
+	</TraitDef>
+
+	<!--欲求-->
+	<NeedDef>
+		<defName>NR_Blood</defName>
+		<needClass>NoctiRace.NR_NeedBlood</needClass>
+		<label>吸血欲求</label>
+		<description>人間の血液を求めている.</description>
+		<minIntelligence>Humanlike</minIntelligence>
+		<colonistAndPrisonersOnly>true</colonistAndPrisonersOnly>
+		<listPriority>100</listPriority>
+		<freezeWhileSleeping>false</freezeWhileSleeping>
+		<baseLevel>0</baseLevel>
+		<minIntelligence>ToolUser</minIntelligence>
+		<onlyIfCausedByGene>true</onlyIfCausedByGene>
+
+
+	</NeedDef>
+
 
 </Defs>
